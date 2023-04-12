@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Creator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button onclick="window.location.href='index.html'" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to My Chatbots
+            </button>
+            
+        </div>
+        <h1><i class="fas fa-cogs"></i> Socratique - Bot Creator</h1>
+        <form id="personalityForm">
+            <div class="input-group">
+                <label for="tone">Tone:</label>
+                <select name="tone" id="tone">
+                    <option value="friendly">Friendly</option>
+                    <option value="formal">Formal</option>
+                    <option value="casual">Casual</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="interests">Topics that the bot will cover (comma-separated):</label>
+                <input type="text" id="interests" placeholder="e.g. photography, web development">
+            </div>
+            <button type="submit"><i class="fas fa-magic"></i> Generate Custom Bot</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+
+    </div>
+
+    <script src="bot-creator-script.js"></script>
+</body>
+</html>
