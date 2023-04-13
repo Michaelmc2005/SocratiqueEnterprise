@@ -2,7 +2,7 @@
 const systemPrompt = sessionStorage.getItem('systemPrompt');
 
 async function fetchChatGPTResponse(prompt, message) {
-  const apiKey = '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';
+  const apiKey = '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';
   const headers = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${apiKey}`,
@@ -25,13 +25,6 @@ async function fetchChatGPTResponse(prompt, message) {
 
   const data = await response.json();
   return data.choices[0].message.content.trim();
-}
-const topicParts = systemPrompt.split(";");
-const topicString = topicParts.find(part => part.includes("topic -"));
-if (topicString) {
-  const topic = topicString.replace("topic -", "").trim();
-  const capitalizedTopic = topic.charAt(0).toUpperCase() + topic.slice(1);
-  document.querySelector('.chatbot-topic').textContent = `Topic: ${capitalizedTopic}`;
 }
 
 

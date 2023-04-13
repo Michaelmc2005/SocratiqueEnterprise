@@ -6,6 +6,7 @@
     <title>Bot Creator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,9 +27,31 @@
                 </select>
             </div>
             <div class="input-group">
-                <label for="interests">Topics that the bot will cover (comma-separated):</label>
+                <label for="interests">Topic</label>
                 <input type="text" id="interests" placeholder="e.g. photography, web development">
             </div>
+            <input type="file" id="pdfInput" accept=".pdf" />
+            <div id="outputText"style="display:none;"></div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+            <script>
+                document.getElementById('pdfInput').addEventListener('change', async (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const pdfData = await file.arrayBuffer();
+                        const pdfDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
+                        let extractedText = '';
+
+                        for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                            const page = await pdfDoc.getPage(pageNum);
+                            const textContent = await page.getTextContent();
+                            extractedText += textContent.items.map(item => item.str).join(' ');
+                        }
+
+                        document.getElementById('outputText').innerText = extractedText;
+                    }
+                });
+            </script>
             <button type="submit"><i class="fas fa-magic"></i> Generate Custom Bot</button>
         </form>
         <div id="error-message" class="error-message"></div>
