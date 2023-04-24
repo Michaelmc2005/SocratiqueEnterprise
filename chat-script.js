@@ -2,7 +2,7 @@
 const systemPrompt = sessionStorage.getItem('systemPrompt');
 
 async function fetchChatGPTResponse(prompt, message) {
-  const apiKey = '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';
+  const apiKey = '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';
   const headers = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${apiKey}`,
